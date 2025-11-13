@@ -14,6 +14,13 @@ export default {
     },
     extend: {
       colors: {
+        mystic: {
+          purple: "hsl(280, 80%, 60%)",
+          cyan: "hsl(190, 75%, 50%)",
+          gold: "hsl(45, 95%, 65%)",
+          dark: "hsl(220, 25%, 12%)",
+          light: "hsl(45, 100%, 98%)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -84,6 +91,30 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.6s ease-out",
+        "scale-in": "scale-in 0.5s ease-out",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "scale-in": {
+          "0%": {
+            transform: "scale(0.95)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: "1",
+          },
+        },
       },
     },
   },
