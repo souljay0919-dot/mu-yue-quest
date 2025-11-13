@@ -47,15 +47,15 @@ const Index = () => {
       {/* 內容 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
         {/* 表單卡片 */}
-        <div className="w-full max-w-md rounded-2xl bg-card/80 backdrop-blur-md p-8 shadow-2xl border border-border/50 animate-scale-in">
-          <h1 className="mb-6 text-center text-3xl font-bold text-foreground">
+        <div className="w-full max-w-md rounded-2xl bg-white/95 backdrop-blur-md p-8 shadow-2xl border border-mystic-cyan/30 animate-scale-in">
+          <h1 className="mb-6 text-center text-3xl font-bold text-mystic-dark bg-gradient-to-r from-mystic-purple to-mystic-cyan bg-clip-text text-transparent">
             搶先預約
           </h1>
           <RegistrationForm />
         </div>
 
         {/* 底部文字 */}
-        <p className="mt-8 text-center text-muted-foreground drop-shadow-lg">
+        <p className="mt-8 text-center text-white drop-shadow-lg text-lg font-medium">
           開啟您的沐月仙境之旅
         </p>
       </div>
