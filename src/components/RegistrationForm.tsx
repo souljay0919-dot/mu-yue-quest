@@ -1,28 +1,4 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
-
-const registrationSchema = z.object({
-  username: z
-    .string()
-    .min(6, { message: "帳號至少需要6個字元" })
-    .regex(/^[a-zA-Z0-9]+$/, { message: "帳號不能包含特殊符號" }),
-  password: z.string().min(1, { message: "請輸入密碼" }),
-  captcha: z.string().min(1, { message: "請輸入驗證碼" }),
-});
-
-const generateCaptcha = () => {
-  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-  let captcha = "";
-  for (let i = 0; i < 6; i++) {
-    captcha += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return captcha;
-};
+// ...前略 import 與其他程式碼保持不變
 
 export const RegistrationForm = () => {
   const [username, setUsername] = useState("");
@@ -43,13 +19,8 @@ export const RegistrationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      registrationSchema.parse({
-        username,
-        password,
-        captcha: captchaInput,
-      });
+      registrationSchema.parse({ username, password, captcha: captchaInput });
 
       if (captchaInput.toLowerCase() !== captcha.toLowerCase()) {
         toast({
@@ -172,6 +143,13 @@ export const RegistrationForm = () => {
                 🔄
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* 🔰 LOGO 區塊放在按鈕上方 */}
+        <div className="flex justify-center">
+          <div className="bg-gradient-to-r from-mystic-cyan/10 to-mystic-purple/10 px-6 py-3 rounded-full border border-mystic-cyan/30 text-mystic-dark font-bold text-xl tracking-wide">
+            Lovable 預約系統
           </div>
         </div>
 
