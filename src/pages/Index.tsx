@@ -11,7 +11,7 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentBg((prev) => (prev + 1) % backgrounds.length);
-    }, 15000); // 每 15 秒輪播一次
+    }, 10000); // 每 15 秒輪播一次
     return () => clearInterval(interval);
   }, []);
 
