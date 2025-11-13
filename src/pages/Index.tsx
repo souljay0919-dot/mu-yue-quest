@@ -11,7 +11,7 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentBg((prev) => (prev + 1) % backgrounds.length);
-    }, 15000);
+    }, 15000); // 每 15 秒輪播一次
     return () => clearInterval(interval);
   }, []);
 
@@ -37,7 +37,7 @@ const Index = () => {
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
         {/* 表單卡片 */}
-        <div className="w-full max-w-md rounded-2xl bg-white/5 backdrop-blur-md p-8 shadow-xl border border-white/10 animate-scale-in">
+        <div className="w-full max-w-md rounded-2xl bg-white/0 backdrop-blur-md p-8 shadow-xl border border-white/10 animate-scale-in">
           {/* LOGO 放在表單區塊上方 */}
           <div className="flex justify-center mb-6 animate-fade-in">
             <img
