@@ -12,13 +12,12 @@ const Index = () => {
     const interval = setInterval(() => {
       setCurrentBg((prev) => (prev + 1) % backgrounds.length);
     }, 8000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* 背景圖片 */}
+      {/* 背景圖片輪播 */}
       {backgrounds.map((bg, index) => (
         <div
           key={index}
@@ -35,10 +34,10 @@ const Index = () => {
       {/* 深色遮罩 */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* 內容 */}
+      {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
         {/* 表單卡片 */}
-        <div className="w-full max-w-md rounded-2xl bg-card/80 backdrop-blur-md p-8 shadow-2xl border border-border/50 animate-scale-in">
+        <div className="w-full max-w-md rounded-2xl bg-white/20 backdrop-blur-xl p-8 shadow-2xl border border-white/30 animate-scale-in">
           {/* LOGO 放在表單區塊上方 */}
           <div className="flex justify-center mb-6 animate-fade-in">
             <img
@@ -48,15 +47,17 @@ const Index = () => {
             />
           </div>
 
-          <h1 className="mb-6 text-center text-3xl font-bold text-foreground">
+          {/* 標題 */}
+          <h1 className="mb-6 text-center text-3xl font-bold text-white drop-shadow-md">
             搶先預約
           </h1>
 
+          {/* 表單元件 */}
           <RegistrationForm />
         </div>
 
         {/* 底部文字 */}
-        <p className="mt-8 text-center text-muted-foreground drop-shadow-lg">
+        <p className="mt-8 text-center text-white/80 drop-shadow-lg">
           開啟您的沐月仙境之旅
         </p>
       </div>
