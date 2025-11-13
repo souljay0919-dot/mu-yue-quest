@@ -117,7 +117,7 @@ export const RegistrationForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
       <div className="space-y-2">
-        <Label htmlFor="username" className="text-foreground text-lg">
+        <Label htmlFor="username" className="text-mystic-dark text-lg font-semibold">
           帳號
         </Label>
         <Input
@@ -126,13 +126,13 @@ export const RegistrationForm = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="至少6個字元，不含特殊符號"
-          className="bg-card/50 border-border text-foreground placeholder:text-muted-foreground"
+          className="bg-white border-mystic-cyan/40 text-mystic-dark placeholder:text-gray-400 focus:border-mystic-purple focus:ring-mystic-purple/20"
           disabled={isSubmitting}
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password" className="text-foreground text-lg">
+        <Label htmlFor="password" className="text-mystic-dark text-lg font-semibold">
           密碼
         </Label>
         <Input
@@ -141,13 +141,13 @@ export const RegistrationForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="請輸入密碼"
-          className="bg-card/50 border-border text-foreground placeholder:text-muted-foreground"
+          className="bg-white border-mystic-cyan/40 text-mystic-dark placeholder:text-gray-400 focus:border-mystic-purple focus:ring-mystic-purple/20"
           disabled={isSubmitting}
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="captcha" className="text-foreground text-lg">
+        <Label htmlFor="captcha" className="text-mystic-dark text-lg font-semibold">
           驗證碼
         </Label>
         <div className="flex gap-3 items-center">
@@ -158,12 +158,12 @@ export const RegistrationForm = () => {
               value={captchaInput}
               onChange={(e) => setCaptchaInput(e.target.value)}
               placeholder="請輸入驗證碼"
-              className="bg-card/50 border-border text-foreground placeholder:text-muted-foreground"
+              className="bg-white border-mystic-cyan/40 text-mystic-dark placeholder:text-gray-400 focus:border-mystic-purple focus:ring-mystic-purple/20"
               disabled={isSubmitting}
             />
           </div>
           <div className="flex gap-2 items-center">
-            <div className="bg-muted px-4 py-2 rounded-lg font-mono text-xl font-bold tracking-wider select-none border-2 border-primary">
+            <div className="bg-gradient-to-r from-mystic-cyan/20 to-mystic-purple/20 px-4 py-2 rounded-lg font-mono text-xl font-bold tracking-wider select-none border-2 border-mystic-cyan/50 text-mystic-purple">
               {captcha}
             </div>
             <Button
@@ -172,7 +172,7 @@ export const RegistrationForm = () => {
               variant="outline"
               size="icon"
               disabled={isSubmitting}
-              className="hover:bg-primary/20"
+              className="border-mystic-cyan/40 hover:bg-mystic-cyan/10 hover:border-mystic-cyan"
             >
               🔄
             </Button>
@@ -182,7 +182,7 @@ export const RegistrationForm = () => {
 
       <Button
         type="submit"
-        className="w-full text-lg py-6 bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-lg hover:shadow-xl transition-all"
+        className="w-full text-lg py-6 bg-gradient-to-r from-mystic-purple to-mystic-cyan hover:from-mystic-purple/90 hover:to-mystic-cyan/90 text-white font-bold shadow-lg hover:shadow-xl transition-all"
         disabled={isSubmitting}
       >
         {isSubmitting ? "處理中..." : "搶先預約"}
