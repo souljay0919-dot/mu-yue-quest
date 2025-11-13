@@ -35,17 +35,17 @@ const Index = () => {
       {/* 深色遮罩 */}
       <div className="absolute inset-0 bg-black/40" />
 
+      {/* Logo - 左上角 */}
+      <div className="absolute top-6 left-6 z-20 animate-fade-in">
+        <img
+          src={logo}
+          alt="沐月仙境"
+          className="h-24 w-auto drop-shadow-2xl md:h-28"
+        />
+      </div>
+
       {/* 內容 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* Logo */}
-        <div className="mb-8 animate-fade-in">
-          <img
-            src={logo}
-            alt="沐月仙境"
-            className="h-32 w-auto drop-shadow-2xl md:h-40"
-          />
-        </div>
-
         {/* 表單卡片 */}
         <div className="w-full max-w-md rounded-2xl bg-card/80 backdrop-blur-md p-8 shadow-2xl border border-border/50 animate-scale-in">
           <h1 className="mb-6 text-center text-3xl font-bold text-foreground">
