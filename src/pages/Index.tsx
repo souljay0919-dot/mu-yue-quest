@@ -37,7 +37,7 @@ const Index = () => {
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
         {/* 表單卡片 */}
-        <div className="w-full max-w-md rounded-2xl bg-white/20 backdrop-blur-xl p-8 shadow-2xl border border-white/30 animate-scale-in">
+        <div className="w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-2xl p-8 shadow-2xl border border-white/20 animate-scale-in">
           {/* LOGO 放在表單區塊上方 */}
           <div className="flex justify-center mb-6 animate-fade-in">
             <img
