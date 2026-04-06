@@ -27,7 +27,7 @@ const Index = () => {
             <img
               src={logo}
               alt="沐月仙境"
-              className="h-44 w-auto drop-shadow-2xl md:h-52"
+              className="w-full max-w-full drop-shadow-2xl"
             />
           </div>
 
