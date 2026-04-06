@@ -21,7 +21,7 @@ const Index = () => {
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
         {/* LOGO - 位於卡片上方，與卡片重疊 */}
-        <div className="flex justify-center mb-[-3rem] z-10 animate-fade-in">
+        <div className="flex justify-center mb-[-1rem] z-10 animate-fade-in">
           <img
             src={logo}
             alt="沐月仙境"
