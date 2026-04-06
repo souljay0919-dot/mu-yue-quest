@@ -20,12 +20,12 @@ const Index = () => {
 
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* LOGO - 獨立在卡片上方，往上移動並放大加寬 */}
-        <div className="flex justify-center mb-16 -mt-20">
+        {/* LOGO - 放寬，位置再往上，與卡片距離縮短 */}
+        <div className="flex justify-center mb-6 -mt-24">
           <img
             src={logo}
             alt="沐月仙境"
-            className="w-[26rem] md:w-[32rem] lg:w-[38rem] drop-shadow-2xl"
+            className="w-[36rem] md:w-[42rem] lg:w-[48rem] drop-shadow-2xl"
           />
         </div>
 
@@ -34,6 +34,7 @@ const Index = () => {
           className="
             w-full max-w-sm
             h-[36rem] md:h-[42rem] lg:h-[48rem]
+            -mt-4
             rounded-2xl bg-white/10 backdrop-blur-lg
             p-10 pt-16 shadow-2xl border border-white/20 animate-scale-in
             flex flex-col justify-start
