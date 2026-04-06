@@ -20,19 +20,19 @@ const Index = () => {
 
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* 表單卡片 - 仿 fate-ro 風格：白色半透明毛玻璃 */}
-        <div className="w-full max-w-lg rounded-3xl bg-white/60 backdrop-blur-xl p-10 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 animate-scale-in">
+        {/* 表單卡片 - 原始透明玻璃感 */}
+        <div className="w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-lg p-8 shadow-2xl border border-white/20 animate-scale-in">
           {/* LOGO */}
           <div className="flex justify-center mb-2 animate-fade-in">
             <img
               src={logo}
               alt="沐月仙境"
-              className="w-full max-w-full drop-shadow-2xl"
+              className="w-full max-w-full drop-shadow-2xl translate-x-3"
             />
           </div>
 
           {/* 標題 */}
-          <h1 className="mb-6 text-center text-3xl font-bold text-gray-800 drop-shadow-sm">
+          <h1 className="mb-6 text-center text-3xl font-bold text-white drop-shadow-md">
             搶先預約
           </h1>
 
@@ -41,7 +41,7 @@ const Index = () => {
         </div>
 
         {/* 底部文字 */}
-        <p className="mt-8 text-center text-white/90 drop-shadow-lg text-lg font-medium">
+        <p className="mt-8 text-center text-white/80 drop-shadow-lg">
           開啟您的沐月仙境之旅
         </p>
       </div>
