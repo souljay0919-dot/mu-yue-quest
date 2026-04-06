@@ -20,8 +20,8 @@ const Index = () => {
 
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* LOGO - 放寬，位置再往上，與卡片距離縮短 */}
-        <div className="flex justify-center mb-6 -mt-24">
+        {/* LOGO - 放寬，往上移，並向右偏移 */}
+        <div className="flex justify-center mb-6 -mt-24 translate-x-12">
           <img
             src={logo}
             alt="沐月仙境"
