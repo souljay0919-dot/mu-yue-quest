@@ -20,12 +20,12 @@ const Index = () => {
 
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* LOGO - 獨立在卡片上方 */}
-        <div className="flex justify-center mb-8">
+        {/* LOGO - 再往上移動，放大加寬 */}
+        <div className="flex justify-center mb-12 -mt-12">
           <img
             src={logo}
             alt="沐月仙境"
-            className="w-64 md:w-72 lg:w-80 drop-shadow-2xl"
+            className="w-[22rem] md:w-[28rem] lg:w-[34rem] drop-shadow-2xl"
           />
         </div>
 
