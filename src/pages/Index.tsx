@@ -20,7 +20,16 @@ const Index = () => {
 
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* 表單卡片 - 直立長方形比例，響應式高度 */}
+        {/* LOGO - 獨立在卡片上方 */}
+        <div className="flex justify-center mb-8">
+          <img
+            src={logo}
+            alt="沐月仙境"
+            className="w-64 md:w-72 lg:w-80 drop-shadow-2xl"
+          />
+        </div>
+
+        {/* 表單卡片 - 直立長方形比例 */}
         <div
           className="
             w-full max-w-sm
@@ -30,15 +39,6 @@ const Index = () => {
             flex flex-col justify-start
           "
         >
-          {/* LOGO 放在標題上方 */}
-          <div className="flex justify-center mb-6">
-            <img
-              src={logo}
-              alt="沐月仙境"
-              className="w-48 md:w-56 lg:w-64 drop-shadow-2xl"
-            />
-          </div>
-
           {/* 標題 */}
           <h1 className="mb-8 text-center text-3xl font-bold text-white drop-shadow-md">
             搶先預約
