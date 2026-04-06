@@ -18,27 +18,27 @@ const Index = () => {
       {/* 淡色遮罩 */}
       <div className="absolute inset-0 bg-black/20" />
 
-      {/* LOGO - 固定左上角並放大 */}
-      <div className="absolute top-6 left-6 z-20 animate-fade-in">
-        <img
-          src={logo}
-          alt="沐月仙境"
-          className="w-[20rem] md:w-[26rem] lg:w-[30rem] drop-shadow-2xl"
-        />
-      </div>
-
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
         {/* 表單卡片 - 直立長方形比例，響應式高度 */}
-        <div className="
-          w-full max-w-sm
-          h-[36rem]           /* 手機 */
-          md:h-[42rem]        /* 平板 */
-          lg:h-[48rem]        /* 桌機 */
-          rounded-2xl bg-white/10 backdrop-blur-lg
-          p-10 pt-20 shadow-2xl border border-white/20 animate-scale-in
-          flex flex-col justify-start
-        ">
+        <div
+          className="
+            w-full max-w-sm
+            h-[36rem] md:h-[42rem] lg:h-[48rem]
+            rounded-2xl bg-white/10 backdrop-blur-lg
+            p-10 pt-16 shadow-2xl border border-white/20 animate-scale-in
+            flex flex-col justify-start
+          "
+        >
+          {/* LOGO 放在標題上方 */}
+          <div className="flex justify-center mb-6">
+            <img
+              src={logo}
+              alt="沐月仙境"
+              className="w-48 md:w-56 lg:w-64 drop-shadow-2xl"
+            />
+          </div>
+
           {/* 標題 */}
           <h1 className="mb-8 text-center text-3xl font-bold text-white drop-shadow-md">
             搶先預約
