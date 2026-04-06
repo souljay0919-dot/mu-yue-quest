@@ -18,19 +18,19 @@ const Index = () => {
       {/* 深色遮罩 */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* LOGO 左上角 */}
-      <div className="absolute top-4 left-4 z-20 animate-fade-in">
-        <img
-          src={logo}
-          alt="沐月仙境"
-          className="h-24 w-auto drop-shadow-2xl md:h-28"
-        />
-      </div>
-
       {/* 內容區塊 */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8">
-        {/* 表單卡片 - 全透明 */}
-        <div className="w-full max-w-md rounded-2xl p-8 animate-scale-in">
+        {/* 表單卡片 - 透明玻璃感 */}
+        <div className="w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-lg p-8 shadow-2xl border border-white/20 animate-scale-in">
+          {/* LOGO */}
+          <div className="flex justify-center mb-4 animate-fade-in">
+            <img
+              src={logo}
+              alt="沐月仙境"
+              className="h-32 w-auto drop-shadow-2xl md:h-40"
+            />
+          </div>
+
           {/* 標題 */}
           <h1 className="mb-6 text-center text-3xl font-bold text-white drop-shadow-md">
             搶先預約
