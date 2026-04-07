@@ -65,13 +65,12 @@ export const RegistrationForm = () => {
 
       setIsSubmitting(true);
 
-      // 保存到資料庫
-      const { error } = await supabase
-        .from("registrations")
-        .insert([{ username, password }]);
-
-      if (error) {
-        if (error.code === "23505") {
+      // 透過 API 保存到本地資料庫
+      try {
+        await createRegistration({ username, password });
+      } catch (apiError: unknown) {
+        const errMsg = apiError instanceof Error ? apiError.message : "";
+        if (errMsg.includes("409") || errMsg.includes("duplicate") || errMsg.includes("23505")) {
           toast({
             title: "預約失敗",
             description: "此帳號已被使用，請使用其他帳號",
