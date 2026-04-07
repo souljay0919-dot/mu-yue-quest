@@ -2,41 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---------------------------------------------------------
-   設計系統定義 (保留 HSL 變數)
-   --------------------------------------------------------- */
 @layer base {
   :root {
     --background: 220 25% 12%;
     --foreground: 45 100% 98%;
-    --card: 220 20% 18%;
-    --card-foreground: 45 100% 98%;
-    --popover: 220 20% 18%;
-    --popover-foreground: 45 100% 98%;
     --primary: 280 80% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 190 75% 50%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 15% 25%;
-    --muted-foreground: 45 50% 75%;
     --accent: 45 95% 65%;
-    --accent-foreground: 220 25% 12%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
     --border: 280 30% 35%;
-    --input: 220 20% 25%;
-    --ring: 280 80% 60%;
-    --radius: 0.75rem;
   }
 }
 
-@layer base {
-  * { @apply border-border; }
-  body { @apply bg-background text-foreground; }
-}
-
 /* ---------------------------------------------------------
-   1. 徹底關閉原本的正方形呼吸大光暈
+   1. 徹底消除原本的舊動畫 (防止干擾)
    --------------------------------------------------------- */
 .animate-logo-glow {
   animation: none !important;
@@ -45,56 +22,58 @@
 }
 
 /* ---------------------------------------------------------
-   2. **新功能：LOGO 強化版沿邊環繞光暈**
+   2. 真正的光暈：改用 box-shadow 直接作用於容器
    --------------------------------------------------------- */
-@keyframes logo-edge-glow-strong {
+@keyframes logo-halo-breathing {
   0%, 100% {
-    /* 結合核心金色光 + 紫色外圍氛圍光 */
-    filter: 
-      drop-shadow(0 0 4px hsla(45, 100%, 80%, 0.4)) 
-      drop-shadow(0 0 12px hsla(280, 80%, 60%, 0.2));
+    /* 核心金光 + 外圍紫光 (較內斂) */
+    box-shadow: 
+      0 0 15px hsla(45, 95%, 65%, 0.2),
+      inset 0 0 10px hsla(280, 80%, 60%, 0.1);
   }
   50% {
-    /* 呼吸高峰：光暈更寬、更亮、更擴散 */
-    filter: 
-      drop-shadow(0 0 6px hsla(45, 100%, 85%, 0.7)) 
-      drop-shadow(0 0 20px hsla(280, 80%, 60%, 0.5))
-      drop-shadow(0 0 35px hsla(190, 75%, 50%, 0.2)); /* 增加一抹淡藍色擴散 */
+    /* 呼吸高峰：光暈擴散 */
+    box-shadow: 
+      0 0 30px hsla(45, 95%, 65%, 0.5),
+      0 0 50px hsla(280, 80%, 60%, 0.3),
+      inset 0 0 15px hsla(45, 95%, 65%, 0.2);
   }
 }
 
 .animate-logo-shine {
-  /* 應用沿邊環繞光暈动画 */
-  animation: logo-edge-glow-strong 3s ease-in-out infinite !important;
+  position: relative !important;
+  border-radius: 1rem !important; /* 給予圓角讓光暈更自然 */
+  animation: logo-halo-breathing 3s ease-in-out infinite !important;
 }
 
-/* 移除原本會造成掃描感的 ::after 內容 */
+/* 徹底移除由右至左的掃光偽元素 */
 .animate-logo-shine::after {
+  content: none !important;
   display: none !important;
 }
 
 /* ---------------------------------------------------------
-   3. 天波位置：整體向左、再向下
+   3. 天波位置：再向左、向下 (緊貼 LOGO 左下角)
    --------------------------------------------------------- */
 @keyframes tianbo-orbit {
   0%, 100% {
-    /* X: -15px (整體靠左), Y: 80px (緊貼底部) */
-    transform: translate(-15px, 80px) rotate(0deg);
+    /* X: -25px (往左偏移), Y: 85px (緊貼底部) */
+    transform: translate(-25px, 85px) rotate(0deg);
   }
   50% {
-    /* 向左下方小幅擺動 */
-    transform: translate(-22px, 85px) rotate(-5deg);
+    /* 往更左下方擺動 */
+    transform: translate(-32px, 92px) rotate(-8deg);
   }
 }
 
-/* 天波自身的彈跳 */
+/* 天波自身的輕快彈跳 */
 @keyframes tianbo-bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-12px); }
 }
 
 /* ---------------------------------------------------------
-   4. 動畫 Class 應用
+   4. Class 應用
    --------------------------------------------------------- */
 .animate-tianbo-orbit {
   animation: tianbo-orbit 4s ease-in-out infinite !important;
@@ -104,12 +83,8 @@
   animation: tianbo-bounce 1.5s ease-in-out infinite !important;
 }
 
-/* 背景旋轉線條 (極低干擾) */
-@keyframes rotate-lines {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+/* 背景旋轉線條極致弱化 */
 .animate-rotate-lines {
-  animation: rotate-lines 100s linear infinite !important;
-  opacity: 0.05 !important;
+  opacity: 0.03 !important;
+  animation: rotate-lines 120s linear infinite !important;
 }
