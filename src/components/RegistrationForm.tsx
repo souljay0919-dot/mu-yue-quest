@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { createRegistration } from "@/api/registration";
 import { z } from "zod";
 
 const registrationSchema = z.object({
@@ -65,13 +65,22 @@ export const RegistrationForm = () => {
 
       setIsSubmitting(true);
 
-      // 保存到資料庫
-      const { error } = await supabase
-        .from("registrations")
-        .insert([{ username, password }]);
-
-      if (error) {
-        if (error.code === "23505") {
+      // 透過 API 保存到本地資料庫
+      try {
+        await createRegistration({ username, password });
+        toast({
+          title: "🎉 預約成功！",
+          description: "感謝您的預約，我們會盡快與您聯繫",
+          duration: 5000,
+          className: "text-2xl font-bold",
+        });
+        setUsername("");
+        setPassword("");
+        setCaptchaInput("");
+        refreshCaptcha();
+      } catch (apiError: unknown) {
+        const errMsg = apiError instanceof Error ? apiError.message : "";
+        if (errMsg.includes("409") || errMsg.includes("duplicate") || errMsg.includes("23505")) {
           toast({
             title: "預約失敗",
             description: "此帳號已被使用，請使用其他帳號",
@@ -79,20 +88,8 @@ export const RegistrationForm = () => {
             duration: 5000,
           });
         } else {
-          throw error;
+          throw apiError;
         }
-      } else {
-        toast({
-          title: "🎉 預約成功！",
-          description: "感謝您的預約，我們會盡快與您聯繫",
-          duration: 5000,
-          className: "text-2xl font-bold",
-        });
-        // 清空表單
-        setUsername("");
-        setPassword("");
-        setCaptchaInput("");
-        refreshCaptcha();
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
