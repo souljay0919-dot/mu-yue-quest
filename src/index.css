@@ -182,7 +182,7 @@ All colors MUST be HSL.
 }
 
 .animate-tianbo-orbit {
-  animation: tianbo-orbit 6s ease-in-out infinite;
+  animation: tianbo-orbit 4s ease-in-out infinite;
 }
 
 .animate-tianbo-bounce {
