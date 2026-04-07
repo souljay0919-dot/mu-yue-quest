@@ -33,7 +33,7 @@
 }
 
 /* ---------------------------------------------------------
-   1. 徹底消除大範圍光暈與「由右至左」掃過動畫
+   1. 徹底消除大範圍呼吸光暈與「由右至左」掃過動畫
    --------------------------------------------------------- */
 .animate-logo-glow {
   animation: none !important;
@@ -41,38 +41,68 @@
   box-shadow: none !important;
 }
 
-/* 溫和的原地呼吸閃爍，絕對固定位置 */
-@keyframes soft-twinkle {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(1.03); }
+/* ---------------------------------------------------------
+   2. **修正：LOGO 沿邊發光特效** (旋轉流光邊框)
+   --------------------------------------------------------- */
+@keyframes logo-border-shine {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-logo-shine {
+  position: relative; /* 確保偽元素定位正確 */
+  /* 防止溢出切邊，但 Lovable 的結構可能需要這行或 overflowing div */
+  overflow: visible !important; 
 }
 
 .animate-logo-shine::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center, 
-    hsla(45, 100%, 90%, 0.1) 0%, 
-    transparent 75%
+  /* 稍微向外擴展，形成發光邊緣 */
+  inset: -4px; 
+  padding: 4px; /* 寬度大於 inset，使 mask 有效 */
+  /* 使用圓錐漸層模擬沿邊緣旋轉的光，使用更溫和的顏色 */
+  background: conic-gradient(
+    from 90deg at center,
+    transparent 0%,
+    hsla(45, 95%, 85%, 0.15) 10%, /* 主發光段 */
+    hsla(280, 80%, 75%, 0.05) 20%, /* 漸變段 */
+    transparent 30%,
+    transparent 70%,
+    hsla(190, 75%, 70%, 0.05) 80%, /* 尾部段 */
+    transparent 90%
   ) !important;
   background-size: 100% 100% !important; 
-  background-position: center !important;
-  animation: soft-twinkle 6s ease-in-out infinite !important;
+  
+  /* 使用 mask-image 讓發光只沿著邊緣顯示 */
+  -webkit-mask-image: radial-gradient(circle at center, transparent calc(100% - 8px), black 100%);
+  mask-image: radial-gradient(circle at center, transparent calc(100% - 8px), black 100%);
+  
+  /* mask-size 確保 mask 覆蓋整個偽元素 */
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  
+  /* mask-composite 確保 mask 有效 */
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  
+  border-radius: inherit; /* 繼承 LOGO 的圓角 */
+  animation: logo-border-shine 8s linear infinite !important; /* 加長週期，更溫和 */
   pointer-events: none;
+  opacity: 0.8; /* 整體透明度調整 */
 }
 
 /* ---------------------------------------------------------
-   2. 天波精確定位：再向下、靠左一點
+   3. **修正：天波再向下多一點，靠左定位**
    --------------------------------------------------------- */
 @keyframes tianbo-orbit {
   0%, 100% {
-    /* X: 5px (更靠近左邊), Y: 50px (再向下移) */
-    transform: translate(5px, 50px) rotate(0deg);
+    /* X: 5px (靠左), Y: 65px (再向下移) */
+    transform: translate(5px, 65px) rotate(0deg);
   }
   50% {
-    /* 微幅向右下擺動，保持在 LOGO 下方區域 */
-    transform: translate(12px, 55px) rotate(3deg);
+    /* 微幅向右下擺動，保持在 LOGO 正下方區域 */
+    transform: translate(12px, 70px) rotate(3deg);
   }
 }
 
@@ -83,9 +113,10 @@
 }
 
 /* ---------------------------------------------------------
-   3. 動畫 Class 應用
+   4. 動畫 Class 應用
    --------------------------------------------------------- */
 .animate-tianbo-orbit {
+  /* 放慢軌道，讓在下方的停留感更穩重 */
   animation: tianbo-orbit 5s ease-in-out infinite !important;
 }
 
