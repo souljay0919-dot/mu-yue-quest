@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+   All colors MUST be HSL.
 */
 
 @layer base {
@@ -98,16 +98,11 @@ All colors MUST be HSL.
   }
 }
 
-/* Logo light/shadow animation */
-@keyframes logo-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px hsla(280, 80%, 60%, 0.4)) drop-shadow(0 0 20px hsla(45, 95%, 65%, 0.2));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px hsla(280, 80%, 60%, 0.7)) drop-shadow(0 0 40px hsla(45, 95%, 65%, 0.5)) drop-shadow(0 0 60px hsla(190, 75%, 50%, 0.3));
-  }
-}
+/* ---------------------------------------------------------
+   Animations
+   --------------------------------------------------------- */
 
+/* Logo 表面閃爍動畫 (保留) */
 @keyframes logo-shine {
   0% {
     background-position: -200% center;
@@ -117,7 +112,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Rotating light lines around logo */
+/* 旋轉光線動畫 */
 @keyframes rotate-lines {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -128,63 +123,10 @@ All colors MUST be HSL.
   50% { opacity: 0.8; transform: scaleY(1.2); }
 }
 
-/* 天波 orbit animation */
+/* 天波軌道動畫：
+   將原本的 translate 數值向左(X負值)與向下(Y正值)調整，
+   使天波更靠近 LOGO 左下角。
+*/
 @keyframes tianbo-orbit {
   0% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    transform: translate(50px, -30px) rotate(10deg) scale(1.05);
-  }
-  50% {
-    transform: translate(0, -15px) rotate(-8deg) scale(0.97);
-  }
-  75% {
-    transform: translate(-50px, -30px) rotate(8deg) scale(1.03);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-}
-
-@keyframes tianbo-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-.animate-logo-glow {
-  animation: logo-glow 3s ease-in-out infinite;
-}
-
-.animate-logo-shine::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    hsla(45, 95%, 85%, 0.3) 45%,
-    hsla(280, 80%, 80%, 0.2) 50%,
-    transparent 70%
-  );
-  background-size: 200% 100%;
-  animation: logo-shine 4s ease-in-out infinite;
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-.animate-rotate-lines {
-  animation: rotate-lines 12s linear infinite;
-}
-
-.animate-line-pulse {
-  animation: line-pulse 2s ease-in-out infinite;
-}
-
-.animate-tianbo-orbit {
-  animation: tianbo-orbit 4s ease-in-out infinite;
-}
-
-.animate-tianbo-bounce {
-  animation: tianbo-bounce 1.5s ease-in-out infinite;
-}
+    transform: translate(-40px, 25px) rotate(0deg) scale(1);
