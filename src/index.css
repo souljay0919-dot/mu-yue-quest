@@ -33,7 +33,7 @@
 }
 
 /* ---------------------------------------------------------
-   1. 徹底關閉舊的大範圍呼吸光暈
+   1. 徹底關閉舊的大範圍方形呼吸光暈
    --------------------------------------------------------- */
 .animate-logo-glow {
   animation: none !important;
@@ -42,46 +42,52 @@
 }
 
 /* ---------------------------------------------------------
-   2. LOGO 沿邊發光特效 (柔和環繞光)
+   2. 強化版：LOGO 沿邊環繞發光 (顯著提升亮度與範圍)
    --------------------------------------------------------- */
-@keyframes edge-glow {
+@keyframes edge-glow-strong {
   0%, 100% {
-    filter: drop-shadow(0 0 2px hsla(45, 95%, 75%, 0.3)) drop-shadow(0 0 8px hsla(280, 80%, 60%, 0.2));
+    /* 結合多層光暈：金色核心光 + 紫色外圍擴散 */
+    filter: 
+      drop-shadow(0 0 4px hsla(45, 100%, 80%, 0.5)) 
+      drop-shadow(0 0 12px hsla(280, 80%, 60%, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 5px hsla(45, 95%, 85%, 0.6)) drop-shadow(0 0 15px hsla(280, 80%, 60%, 0.4));
+    /* 呼吸高峰：讓光暈更寬、更亮 */
+    filter: 
+      drop-shadow(0 0 8px hsla(45, 100%, 85%, 0.8)) 
+      drop-shadow(0 0 25px hsla(280, 80%, 60%, 0.6))
+      drop-shadow(0 0 40px hsla(190, 75%, 50%, 0.2));
   }
 }
 
 .animate-logo-shine {
-  position: relative;
-  /* 讓 LOGO 本身產生沿邊發光的視覺感 */
-  animation: edge-glow 4s ease-in-out infinite !important;
+  /* 應用強化版沿邊發光 */
+  animation: edge-glow-strong 3s ease-in-out infinite !important;
 }
 
-/* 移除原本會造成掃描感的 ::after 內容 */
+/* 確保不顯示掃過的光影 */
 .animate-logo-shine::after {
   display: none !important;
 }
 
 /* ---------------------------------------------------------
-   3. 天波位置：再向下多一點、靠左
+   3. 天波位置：整體向左、再向下
    --------------------------------------------------------- */
 @keyframes tianbo-orbit {
   0%, 100% {
-    /* X: 0px (更靠左), Y: 75px (再向下移，緊貼底部) */
-    transform: translate(0px, 75px) rotate(0deg);
+    /* X: -15px (往左偏移), Y: 80px (緊貼底部) */
+    transform: translate(-15px, 80px) rotate(0deg);
   }
   50% {
-    /* 小幅度的右下偏移 */
-    transform: translate(8px, 82px) rotate(5deg);
+    /* 小幅度向左下方擺動 */
+    transform: translate(-22px, 85px) rotate(-5deg);
   }
 }
 
 /* 天波自身的彈跳 */
 @keyframes tianbo-bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* ---------------------------------------------------------
@@ -92,15 +98,15 @@
 }
 
 .animate-tianbo-bounce {
-  animation: tianbo-bounce 2s ease-in-out infinite !important;
+  animation: tianbo-bounce 1.5s ease-in-out infinite !important;
 }
 
-/* 背景旋轉線條 (維持極低干擾) */
+/* 背景旋轉線條 (極低干擾) */
 @keyframes rotate-lines {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 .animate-rotate-lines {
-  animation: rotate-lines 80s linear infinite !important;
+  animation: rotate-lines 100s linear infinite !important;
   opacity: 0.05 !important;
 }
