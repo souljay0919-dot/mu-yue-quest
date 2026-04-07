@@ -2,166 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-   All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 220 25% 12%;
     --foreground: 45 100% 98%;
-
     --card: 220 20% 18%;
     --card-foreground: 45 100% 98%;
-
     --popover: 220 20% 18%;
     --popover-foreground: 45 100% 98%;
-
     --primary: 280 80% 60%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 190 75% 50%;
     --secondary-foreground: 0 0% 100%;
-
     --muted: 220 15% 25%;
     --muted-foreground: 45 50% 75%;
-
     --accent: 45 95% 65%;
     --accent-foreground: 220 25% 12%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 280 30% 35%;
     --input: 220 20% 25%;
     --ring: 280 80% 60%;
-
     --radius: 0.75rem;
-
-    --sidebar-background: 220 25% 12%;
-    --sidebar-foreground: 45 100% 98%;
-    --sidebar-primary: 280 80% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 18%;
-    --sidebar-accent-foreground: 45 100% 98%;
-    --sidebar-border: 280 30% 35%;
-    --sidebar-ring: 280 80% 60%;
-  }
-
-  .dark {
-    --background: 220 25% 12%;
-    --foreground: 45 100% 98%;
-
-    --card: 220 20% 18%;
-    --card-foreground: 45 100% 98%;
-
-    --popover: 220 20% 18%;
-    --popover-foreground: 45 100% 98%;
-
-    --primary: 280 80% 60%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 190 75% 50%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 220 15% 25%;
-    --muted-foreground: 45 50% 75%;
-
-    --accent: 45 95% 65%;
-    --accent-foreground: 220 25% 12%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 280 30% 35%;
-    --input: 220 20% 25%;
-    --ring: 280 80% 60%;
-    
-    --sidebar-background: 220 25% 12%;
-    --sidebar-foreground: 45 100% 98%;
-    --sidebar-primary: 280 80% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 18%;
-    --sidebar-accent-foreground: 45 100% 98%;
-    --sidebar-border: 280 30% 35%;
-    --sidebar-ring: 280 80% 60%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
 }
 
 /* ---------------------------------------------------------
-   Animations
+   1. 徹底取消正方形光影 (強制覆蓋)
    --------------------------------------------------------- */
+.animate-logo-glow {
+  animation: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
 
-/* **修改：logo-glow 已移除**，取消強烈的光暈呼吸效果 */
-
-/* LOGO 表面溫和閃爍動畫 (保留並微調) */
+/* ---------------------------------------------------------
+   2. 溫和的 LOGO 表面閃爍
+   --------------------------------------------------------- */
 @keyframes logo-shine {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
-
-/* 旋轉光線動畫 */
-@keyframes rotate-lines {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes line-pulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
-  50% { opacity: 0.8; transform: scaleY(1.2); }
-}
-
-/* **修改：天波軌道動畫**
-   將天波活動範圍限制在 LOGO 的右側（X軸正值），
-   縮小移動幅度，使其看起來像是在 LOGO 旁邊溫和地跳動和繞行。
-*/
-@keyframes tianbo-orbit {
-  0% {
-    /* 起始位置：LOGO 右側，微偏下 */
-    transform: translate(30px, 15px) rotate(0deg) scale(1);
-  }
-  25% {
-    /* 移動：右側偏上，微放大 */
-    transform: translate(35px, -10px) rotate(5deg) scale(1.03);
-  }
-  50% {
-    /* 移動：右側中心，微縮小 */
-    transform: translate(25px, 0px) rotate(-3deg) scale(0.98);
-  }
-  75% {
-    /* 移動：最右側，微偏下 */
-    transform: translate(40px, 10px) rotate(3deg) scale(1.02);
-  }
-  100% {
-    /* 回到起始位置 */
-    transform: translate(30px, 15px) rotate(0deg) scale(1);
-  }
-}
-
-@keyframes tianbo-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* ---------------------------------------------------------
-   Animation Classes
-   --------------------------------------------------------- */
-
-/* **修改：已移除 .animate-logo-glow** */
 
 .animate-logo-shine::after {
   content: '';
@@ -169,29 +55,51 @@
   inset: 0;
   background: linear-gradient(
     105deg,
-    transparent 30%,
-    hsla(45, 95%, 85%, 0.3) 45%, /* 降低亮度，更溫和 */
-    hsla(280, 80%, 80%, 0.15) 50%,
-    transparent 70%
+    transparent 40%,
+    hsla(45, 100%, 90%, 0.1) 45%,
+    hsla(0, 0%, 100%, 0.2) 50%,
+    hsla(45, 100%, 90%, 0.1) 55%,
+    transparent 60%
   );
   background-size: 200% 100%;
-  animation: logo-shine 5s ease-in-out infinite; /* 加長週期，更溫和 */
+  animation: logo-shine 6s infinite linear !important;
   pointer-events: none;
-  border-radius: inherit;
 }
 
-.animate-rotate-lines {
-  animation: rotate-lines 12s linear infinite;
+/* ---------------------------------------------------------
+   3. 天波在旁邊跳 (調整位置至右側/側邊)
+   --------------------------------------------------------- */
+@keyframes tianbo-orbit {
+  0%, 100% {
+    transform: translate(45px, 10px) scale(1);
+  }
+  50% {
+    transform: translate(55px, -5px) scale(1.05);
+  }
 }
 
-.animate-line-pulse {
-  animation: line-pulse 2s ease-in-out infinite;
+@keyframes tianbo-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
+/* ---------------------------------------------------------
+   4. 動畫 Class 定義
+   --------------------------------------------------------- */
 .animate-tianbo-orbit {
-  animation: tianbo-orbit 6s ease-in-out infinite; /* 加長週期，更溫和 */
+  animation: tianbo-orbit 4s ease-in-out infinite !important;
 }
 
 .animate-tianbo-bounce {
-  animation: tianbo-bounce 1.5s ease-in-out infinite;
+  animation: tianbo-bounce 2s ease-in-out infinite !important;
+}
+
+/* 旋轉背景線條 (如果還有用到) */
+@keyframes rotate-lines {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-rotate-lines {
+  animation: rotate-lines 20s linear infinite !important;
+  opacity: 0.4;
 }
