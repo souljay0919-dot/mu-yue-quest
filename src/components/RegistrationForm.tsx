@@ -68,6 +68,16 @@ export const RegistrationForm = () => {
       // 透過 API 保存到本地資料庫
       try {
         await createRegistration({ username, password });
+        toast({
+          title: "🎉 預約成功！",
+          description: "感謝您的預約，我們會盡快與您聯繫",
+          duration: 5000,
+          className: "text-2xl font-bold",
+        });
+        setUsername("");
+        setPassword("");
+        setCaptchaInput("");
+        refreshCaptcha();
       } catch (apiError: unknown) {
         const errMsg = apiError instanceof Error ? apiError.message : "";
         if (errMsg.includes("409") || errMsg.includes("duplicate") || errMsg.includes("23505")) {
@@ -78,20 +88,8 @@ export const RegistrationForm = () => {
             duration: 5000,
           });
         } else {
-          throw error;
+          throw apiError;
         }
-      } else {
-        toast({
-          title: "🎉 預約成功！",
-          description: "感謝您的預約，我們會盡快與您聯繫",
-          duration: 5000,
-          className: "text-2xl font-bold",
-        });
-        // 清空表單
-        setUsername("");
-        setPassword("");
-        setCaptchaInput("");
-        refreshCaptcha();
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
