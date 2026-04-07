@@ -33,7 +33,7 @@
 }
 
 /* ---------------------------------------------------------
-   1. 徹底取消背景大光暈與掃過動畫
+   1. 徹底取消大光暈與「由右至左」掃過動畫
    --------------------------------------------------------- */
 .animate-logo-glow {
   animation: none !important;
@@ -41,65 +41,66 @@
   box-shadow: none !important;
 }
 
-/* 取消「由右到左」的掃過感，改為原地的微弱呼吸閃爍 */
+/* 溫和的原地閃爍，取消 background-position 移動 */
 @keyframes soft-twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(0.98); }
-  50% { opacity: 0.5; transform: scale(1.02); }
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
 }
 
 .animate-logo-shine::after {
   content: '';
   position: absolute;
   inset: 0;
-  /* 使用放射狀漸層替代線性漸層，消除方向感 */
+  /* 使用放射漸層並固定位置，消除掃描感 */
   background: radial-gradient(
-    circle, 
-    hsla(45, 100%, 90%, 0.2) 0%, 
+    circle at center, 
+    hsla(45, 100%, 90%, 0.15) 0%, 
     transparent 70%
   ) !important;
-  background-size: 100% 100% !important; /* 固定大小不移動 */
-  animation: soft-twinkle 4s ease-in-out infinite !important;
+  background-size: 100% 100% !important; 
+  background-position: center !important;
+  animation: soft-twinkle 5s ease-in-out infinite !important;
   pointer-events: none;
 }
 
 /* ---------------------------------------------------------
-   2. 天波靠近 LOGO (縮小位移，防止跳出畫面)
+   2. 天波向右下移並靠近 LOGO
    --------------------------------------------------------- */
 @keyframes tianbo-orbit {
   0%, 100% {
-    /* 數值縮小到 25px，讓它緊貼 LOGO 右側 */
-    transform: translate(25px, 5px) rotate(0deg);
+    /* X: 20px (靠右), Y: 35px (向下移) */
+    transform: translate(20px, 35px) rotate(0deg);
   }
   50% {
-    /* 輕微向右上方漂浮 */
-    transform: translate(32px, -8px) rotate(8deg);
+    /* 輕微向右下方小幅擺動 */
+    transform: translate(28px, 42px) rotate(5deg);
   }
 }
 
-/* 天波自身的輕快彈跳 */
+/* 天波自身的上下輕微彈跳 */
 @keyframes tianbo-bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 /* ---------------------------------------------------------
    3. 動畫 Class 應用
    --------------------------------------------------------- */
 .animate-tianbo-orbit {
-  /* 縮短時間讓跳動感更明顯 */
-  animation: tianbo-orbit 3s ease-in-out infinite !important;
+  /* 稍微放慢軌道，讓向下移後的停留感更穩重 */
+  animation: tianbo-orbit 4s ease-in-out infinite !important;
 }
 
 .animate-tianbo-bounce {
-  animation: tianbo-bounce 1.5s ease-in-out infinite !important;
+  animation: tianbo-bounce 2s ease-in-out infinite !important;
 }
 
-/* 背景旋轉線條 (更暗更低調) */
+/* 背景旋轉線條 (更暗，輔助背景) */
 @keyframes rotate-lines {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 .animate-rotate-lines {
-  animation: rotate-lines 40s linear infinite !important;
-  opacity: 0.15 !important;
+  animation: rotate-lines 60s linear infinite !important;
+  opacity: 0.1 !important;
 }
